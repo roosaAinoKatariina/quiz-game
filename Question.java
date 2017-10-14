@@ -1,7 +1,5 @@
-import java.io.Serializable;
-import java.util.ArrayList;
 
-public class Question implements Serializable {
+public class Question {
 	
 	
 	/**
@@ -16,7 +14,6 @@ public class Question implements Serializable {
 	private String wrongAnswer1;
 	private String wrongAnswer2;
 	private String wrongAnswer3;
-	private ArrayList<String> questions;
 	
 	
 	public Question(String question, String correctAnswer, String wrongAnswer1,
