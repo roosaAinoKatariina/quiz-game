@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Question implements Serializable {
 	
@@ -15,6 +16,8 @@ public class Question implements Serializable {
 	private String wrongAnswer1;
 	private String wrongAnswer2;
 	private String wrongAnswer3;
+	private ArrayList<String> questions;
+	
 	
 	public Question(String question, String correctAnswer, String wrongAnswer1,
 			 String wrongAnswer2, String wrongAnswer3) {
@@ -34,6 +37,7 @@ public class Question implements Serializable {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+	
 
 	public String getCorrectAnswer() {
 		return correctAnswer;

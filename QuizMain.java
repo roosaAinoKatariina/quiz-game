@@ -56,7 +56,7 @@ public class QuizMain {
 			random = randomGen.nextInt(questions.size());
 			currentQuestion = questions.get(random);
 			questions.remove(random);
-			
+
 			//the questions are set to the question chart
 			questionChart = assignQuestionsToMap(currentQuestion, questionChart);
 
@@ -72,21 +72,23 @@ public class QuizMain {
 			String answer = scanner.nextLine();
 
 			answer = answer.toUpperCase();
-			
+
 			//A while loop that runs until the player types A, B, C, or D.
 			while (!(answer.equals("A") | answer.equals("B") | answer.equals("C") | answer.equals("D"))) {
 				System.out.println("Please, type A, B, C or D.");
 				answer = scanner.nextLine();
 				answer = answer.toUpperCase();
 			}
-		
-		if (questionChart.get(answer).equals(currentQuestion.getCorrectAnswer())) {
-			System.out.println("That's correct!");
-			score++;
-			
-		} else {
-			System.out.println("That's not quite right...");
-		}
+
+			//check the currentQuestion's correct answer to see if it matches the
+			//player's input. If it's a match, the player gets a point, if not, the game continues.
+			if (questionChart.get(answer).equals(currentQuestion.getCorrectAnswer())) {
+				System.out.println("That's correct!");
+				score++;
+
+			} else {
+				System.out.println("That's not quite right...");
+			}
 		
 		}
 		
@@ -103,7 +105,7 @@ public class QuizMain {
 		case 3: System.out.println("Well done!");
 		break;
 
-		case 2: System.out.println("You know more than Jon Snow, though.");
+		case 2: System.out.println("You're half-way of knowing it all!");
 		break;
 
 		case 1: System.out.println("You tried, " + name + ", and therefore no one can criticise you.");
@@ -116,24 +118,29 @@ public class QuizMain {
 		break;
 		}
 		
+		//The programme stops running after thanking the player and closing the scanner
 		System.out.println("Thank you for playing, " + name + "!");
 
 
-		
 		scanner.close();
 	
 		
 		
 	} //END OF main METHOD
 	
+	
 	/*
 	 * 
 	 * A method to set the current questions to questionChart.
 	 * 
+	 * @.pre question != null, map != null
+	 * @.post map.size() == 4
+	 * 
 	 */
 	public static Map<String, String> assignQuestionsToMap(Question question, Map<String, String> map) {
 		
-		//mess up the order of the questions
+		//mess up the order of the questions by putting them in an ArrayList and using
+		//the Collections' shuffle method
 		
 		ArrayList<String> questionAnswers = new ArrayList<String>();
 		questionAnswers.add(question.getCorrectAnswer());
@@ -144,18 +151,21 @@ public class QuizMain {
 		//Shuffle the order of questions
 		Collections.shuffle(questionAnswers);
 		
+		//Put the questions in the map
 		map.put("A", questionAnswers.get(0));
 		map.put("B", questionAnswers.get(1));
 		map.put("C", questionAnswers.get(2));
 		map.put("D", questionAnswers.get(3));
 		
 		return map;
-	}
+		
+	} //END OF assignQuestionsToMap METHOD
 
 	
 	/*
 	 * 
 	 * A method that creates a list of questions that the game is going to use.
+	 * @.post questionList != null && questionList.size > 0
 	 * 
 	 */
 	
@@ -180,6 +190,6 @@ public class QuizMain {
 		
 		return questionList;
 		
-	} //END OF METHODS
+	} //END OF init METHOD
 
 } //END OF QuizMain CLASS
